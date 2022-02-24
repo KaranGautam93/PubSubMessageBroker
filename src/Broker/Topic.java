@@ -27,7 +27,8 @@ public class Topic {
 
         while (it.hasNext()) {
             Subscriber subscriber = it.next();
-            subscriber.printMessage(message);
+            ThreadedConsume threadedConsume = new ThreadedConsume(subscriber, message);
+            threadedConsume.start();
         }
     }
 }
