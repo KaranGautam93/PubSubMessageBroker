@@ -15,8 +15,9 @@ public class ThreadedMessageSend extends Thread {
     public void run() {
         try {
             Thread.currentThread().sleep(1000);
-
-            publisher.produce(message, topic);
+            synchronized (publisher) {
+                publisher.produce(message, topic);
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
